@@ -511,7 +511,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 
 // here is the first I try to fix updatePositions
-/*function updatePositions() {
+function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
   var bodyScrollTop = document.body.scrollTop;  
@@ -531,9 +531,10 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 }
  
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);*/
+window.addEventListener('scroll', updatePositions);
+
 // the second way of updatePosition ,but in timeline is bad.
-var lastBodyScrollTop = 0;
+/*var lastBodyScrollTop = 0;
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
@@ -552,9 +553,8 @@ function updatePositions() {
   }
   requestAnimationFrame(updatePositions);
 }
-requestAnimationFrame(updatePositions);
- 
 // runs updatePositions on scroll
+requestAnimationFrame(updatePositions);*/
 
 var pizzaMovers = {};
 // Generates the sliding pizzas when the page loads.
