@@ -534,12 +534,14 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 window.addEventListener('scroll', updatePositions);*/
 
 // the second way of updatePosition ,but in timeline is bad.
+var lastScrollTop = 0;
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  var bodyScrollTop = document.body.scrollTop;  
+  
+  lastScrollTop = document.body.scrollTop;  
   for (var i = 0; i < pizzaMovers.length; i++) {
-    var phase = Math.sin((bodyScrollTop / 1250) + (i % 5));
+    var phase = Math.sin((lastScrollTop / 1250) + (i % 5));
     pizzaMovers[i].style.left = pizzaMovers[i].basicLeft + 100 * phase + 'px';
   }  
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -549,8 +551,8 @@ function updatePositions() {
   if (frame % 10 === 0) {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
-  }
-  requestAnimationFrame(updatePositions);
+  } 
+  requestAnimationFrame(updatePositions); 
 }
 // runs updatePositions on scroll
 requestAnimationFrame(updatePositions);
