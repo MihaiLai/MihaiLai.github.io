@@ -58,7 +58,8 @@ The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstra
 #### index.html
 - use meida in css link
 - use async in js
-- use gulp to inline css
+- inline css
+- use webfontloader
 - compress images and html,css
 
 ### main.js
