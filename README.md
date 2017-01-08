@@ -53,3 +53,17 @@ The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstra
 
 * <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
 * <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+
+### Optimization steps
+#### index.html
+- use meida in css link
+- use async in js
+- use gulp to inline css
+- compress images and html,css
+
+### main.js
+- refactor function changePizzaSizes
+- decrease the numbers of pizza with is unnacessary
+- change the place of definding mover
+- add elem.style.left in loop when DOMContentLoaded event call .
+- refactor function updatePositions

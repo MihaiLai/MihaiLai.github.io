@@ -420,7 +420,7 @@ var resizePizzas = function(size) {
   }
 
   changeSliderLabel(size);
-  
+
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
      function sizeSwitcher (size) {
@@ -484,7 +484,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 
-// here is the first way I try to fix updatePositions
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
@@ -507,29 +506,6 @@ function updatePositions() {
  
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
-
-// the second way of updatePosition ,but in timeline is bad.
-/*var lastScrollTop = 0;
-function updatePositions() {
-  frame++;
-  window.performance.mark("mark_start_frame");
-  requestAnimationFrame(updatePositions);
-  lastScrollTop = document.body.scrollTop;  
-  for (var i = 0; i < pizzaMovers.length; i++) {
-    var phase = Math.sin((lastScrollTop / 1250) + (i % 5));
-    pizzaMovers[i].style.left = pizzaMovers[i].basicLeft + 100 * phase + 'px';
-  }  
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
-  window.performance.mark("mark_end_frame");
-  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
-  if (frame % 10 === 0) {
-    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
-    logAverageFrame(timesToUpdatePosition);
-  }  
-}
-// runs updatePositions on scroll
-requestAnimationFrame(updatePositions);*/
 
 var pizzaMovers = {};
 // Generates the sliding pizzas when the page loads.
