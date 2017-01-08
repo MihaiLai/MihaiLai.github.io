@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
-    inlineCss = require('gulp-inline-css'),
     minifyCSS = require('gulp-minify-css');
     htmlminify = require("gulp-html-minify");
+    minify = require('gulp-minify');
 
 gulp.task('css', function () {
     gulp.src('css/*.css')
@@ -9,14 +9,14 @@ gulp.task('css', function () {
         .pipe(gulp.dest('build/'))
 })
 
-gulp.task('inlineCss', function() {
-    return gulp.src('index.html')
-        .pipe(inlineCss())
-        .pipe(gulp.dest('build/'));
-});
-
 gulp.task('minHtml' , function(){
     return gulp.src("index.html")
         .pipe(htmlminify())
         .pipe(gulp.dest("build/"))
+});
+
+gulp.task('minjs', function() {
+  gulp.src('js/*.js')
+    .pipe(minify())
+    .pipe(gulp.dest('build/'))
 });
