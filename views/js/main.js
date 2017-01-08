@@ -511,13 +511,14 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 
 // here is the first way I try to fix updatePositions
-/*function updatePositions() {
+function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  var bodyScrollTop = document.body.scrollTop;  
+  var bodyScrollTop = document.body.scrollTop;
+
   for (var i = 0; i < pizzaMovers.length; i++) {
     var phase = Math.sin((bodyScrollTop / 1250) + (i % 5));
-    pizzaMovers[i].style.left = pizzaMovers[i].basicLeft + 100 * phase + 'px';
+    pizzaMovers[i].style.transform = 'translateX(' + 100 * phase + 'px)' ;
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -531,14 +532,14 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 }
  
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);*/
+window.addEventListener('scroll', updatePositions);
 
 // the second way of updatePosition ,but in timeline is bad.
-var lastScrollTop = 0;
+/*var lastScrollTop = 0;
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  
+  requestAnimationFrame(updatePositions);
   lastScrollTop = document.body.scrollTop;  
   for (var i = 0; i < pizzaMovers.length; i++) {
     var phase = Math.sin((lastScrollTop / 1250) + (i % 5));
@@ -551,11 +552,10 @@ function updatePositions() {
   if (frame % 10 === 0) {
     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
-  } 
-  requestAnimationFrame(updatePositions); 
+  }  
 }
 // runs updatePositions on scroll
-requestAnimationFrame(updatePositions);
+requestAnimationFrame(updatePositions);*/
 
 var pizzaMovers = {};
 // Generates the sliding pizzas when the page loads.
@@ -568,7 +568,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    elem.style.left = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
